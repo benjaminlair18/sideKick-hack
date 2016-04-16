@@ -45,5 +45,15 @@
         android:clickable="true"
         android:layout_alignBottom="@+id/login" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="userinput"
+        android:id="@+id/input"
+        android:clickable="true"
+
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/tutorial" />
+
 
 </RelativeLayout>

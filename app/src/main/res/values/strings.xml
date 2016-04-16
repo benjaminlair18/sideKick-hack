@@ -19,4 +19,18 @@
     </string>
     <string name="title_activity_maps">Map</string>
     <string name="facebook_app_id">1676872839246758</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+
+    </string>
+
+        <string name="large_text2">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+         </string>
 </resources>
