@@ -55,7 +55,7 @@ public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAd
                 title = "Warn";
                 break;
             case 2:
-                title = "Emergency Call";
+                title = "S.O.S.";
                 break;
         }
         return title;
