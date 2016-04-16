@@ -218,6 +218,7 @@ public class FragmentMaps
 	@Override
 	public void onClick(View v)
 	{
+
 		Toast.makeText(this.getActivity(), "Good", Toast.LENGTH_SHORT)
 		     .show();
 	}
