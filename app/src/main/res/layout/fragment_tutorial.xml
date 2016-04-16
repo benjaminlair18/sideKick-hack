@@ -1,23 +1,23 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:background="@drawable/testbackground"
-                tools:context="com.sidekicker.sidekick.TutorialActivity$PlaceholderFragment">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#E399B1"
+    >
+
+
 
     <com.viewpagerindicator.TitlePageIndicator
         android:id="@+id/indicator"
         android:padding="10dip"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:background="#000000"
-        android:textColor="#2FB3E3"
-        app:footerColor="#2FB3E3"
+        android:background="#E399B1"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp"
+        app:footerColor="#993454"
         app:footerLineHeight="1dp"
         app:footerIndicatorHeight="3dp"
         app:footerIndicatorStyle="underline"
@@ -31,4 +31,4 @@
         android:layout_weight="1"
         />
 
-</RelativeLayout>
+</LinearLayout>

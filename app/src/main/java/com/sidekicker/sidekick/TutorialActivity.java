@@ -44,6 +44,8 @@ public class TutorialActivity extends FragmentActivity {
         return true;
     }
 
+
+}
     /**
      * A placeholder fragment containing a simple view.
      */
