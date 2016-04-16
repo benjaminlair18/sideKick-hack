@@ -4,15 +4,26 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+<<<<<<< HEAD
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.speech.RecognizerIntent;
+=======
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+>>>>>>> origin/master
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
@@ -23,6 +34,7 @@ import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerDragListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -65,10 +77,20 @@ import java.util.List;
 import java.util.Random;
 
 
+<<<<<<< HEAD
 public class MapsActivity extends FragmentActivity implements OnMarkerClickListener,
         OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
+=======
+public class MapsActivity extends FragmentActivity implements  OnMarkerClickListener,
+        OnMapReadyCallback,
+        GoogleMap.OnMyLocationButtonClickListener,
+        ActivityCompat.OnRequestPermissionsResultCallback,
+        OnMapLongClickListener,
+        GoogleMap.OnMapClickListener {
+>>>>>>> origin/master
 
     private GoogleMap mMap;
+    private UiSettings mUiSettings;
     private Marker mSydney;
     private Marker mLastSelectedMarker;
     private final List<Marker> mMarkerRainbow = new ArrayList<Marker>();
@@ -90,8 +112,19 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
     }
+
+    private void initListeners() {
+        mMap.setOnMarkerClickListener(this);
+        mMap.setOnMyLocationButtonClickListener(this);
+        mMap.setOnMapLongClickListener(this);
+        mMap.setOnMapClickListener(this);
+    }
+
 
     /**
      * Manipulates the map once available.
@@ -106,15 +139,13 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        mMap.addMarker(new MarkerOptions().position(SYDNEY)
-                .title("Marker in Sydney")
-                .snippet("Population: 4,627,300"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(SYDNEY));
-        mMap.setOnMarkerClickListener(this);
-
-        mMap.setOnMyLocationButtonClickListener(this);
+        initListeners();
         enableMyLocation();
+
+        mUiSettings = mMap.getUiSettings();
+
+        // Keep the UI Settings state in sync with the checkboxes.
+        mUiSettings.setZoomControlsEnabled(true);
     }
 
     /**
@@ -134,8 +165,32 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
         } else if (mMap != null) {
             // Access to the location has been granted to the app.
             mMap.setMyLocationEnabled(true);
+            SetUpMap();
         }
     }
+
+    private void SetUpMap() {
+        try {
+            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            String provider = locationManager.getBestProvider(criteria, true);
+            Location myLocation = locationManager.getLastKnownLocation(provider);
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            if(myLocation != null) {
+                double latitude = myLocation.getLatitude();
+                double longitude = myLocation.getLongitude();
+                LatLng latLng = new LatLng(latitude, longitude);
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(20));
+                mMap.addMarker(new MarkerOptions().position(latLng)
+                                .title("You are here!")
+                );
+            }
+        }catch(SecurityException e){
+            enableMyLocation();
+        }
+    }
+
 
     @Override
     public boolean onMyLocationButtonClick() {
@@ -168,16 +223,36 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
     }
 
     @Override
-    public boolean onMarkerClick(final Marker marker) {
-        if (marker.equals(mSydney)) {
+    public void onMapClick(LatLng latLng) {
+    }
 
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+        MarkerOptions options = new MarkerOptions().position( latLng );
+        options.title(getAddressFromLatLng(latLng));
+        options.icon( BitmapDescriptorFactory.defaultMarker() );
+
+        mMap.addMarker(options);
+    }
+
+    private String getAddressFromLatLng( LatLng latLng ) {
+        Geocoder geocoder = new Geocoder( this );
+
+        String address = "";
+        try {
+            address = geocoder
+                    .getFromLocation( latLng.latitude, latLng.longitude, 1 )
+                    .get( 0 ).getAddressLine( 0 );
+        } catch (IOException e ) {
         }
 
-        mLastSelectedMarker = marker;
-        // We return false to indicate that we have not consumed the event and that we wish
-        // for the default behavior to occur (which is for the camera to move such that the
-        // marker is centered and for the marker's info window to open, if it has one).
-        return false;
+        return address;
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        marker.showInfoWindow();
+        return true;
     }
 
 
