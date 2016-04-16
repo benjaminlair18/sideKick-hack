@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -50,6 +51,36 @@ public class FragmentMaps
 	private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
 	private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 	private boolean mPermissionDenied = false;
+
+
+	class PopupAdapter implements GoogleMap.InfoWindowAdapter {
+		LayoutInflater inflater=null;
+
+		PopupAdapter(LayoutInflater inflater) {
+			this.inflater=inflater;
+		}
+
+		@Override
+		public View getInfoWindow(Marker marker) {
+			return(null);
+		}
+
+		@Override
+		public View getInfoContents(Marker marker) {
+			View popup=inflater.inflate(R.layout.pop_up, null);
+
+			TextView tv=(TextView)popup.findViewById(R.id.title);
+
+			tv.setText(marker.getTitle());
+			tv=(TextView)popup.findViewById(R.id.snippet);
+			tv.setText(marker.getSnippet());
+
+			return(popup);
+		}
+	}
+
+
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -91,11 +122,6 @@ public class FragmentMaps
 	{
 		mGoogleMaps = googleMap;
 		//		Add a marker in Sydney and move the camera
-		mGoogleMaps.addMarker(new MarkerOptions().position(SYDNEY)
-		                                         .title("Marker in Sydney")
-		                                         .snippet("Population: 4,627,300"));
-		mGoogleMaps.moveCamera(CameraUpdateFactory.newLatLng(SYDNEY));
-
 		initListeners();
 		enableMyLocation();
 
@@ -136,9 +162,8 @@ public class FragmentMaps
 				LatLng latLng = new LatLng(latitude, longitude);
 				mGoogleMaps.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 				mGoogleMaps.animateCamera(CameraUpdateFactory.zoomTo(20));
-				mGoogleMaps.addMarker(new MarkerOptions().position(latLng)
-				                                  .title("You are here!")
-				              );
+
+
 			}
 		} catch (SecurityException e) {
 			enableMyLocation();
@@ -148,6 +173,8 @@ public class FragmentMaps
 	@Override
 	public boolean onMarkerClick(final Marker marker)
 	{
+		mGoogleMaps.setInfoWindowAdapter(new PopupAdapter(getLayoutInflater(new Bundle())));
+
 		marker.showInfoWindow();
 		return true;
 	}
@@ -232,9 +259,10 @@ public class FragmentMaps
 	@Override
 	public void onMapLongClick(LatLng latLng)
 	{
+		mGoogleMaps.clear();
 		MarkerOptions options = new MarkerOptions().position(latLng);
 		options.title(getAddressFromLatLng(latLng));
-		options.icon(BitmapDescriptorFactory.defaultMarker());
+		options.icon(BitmapDescriptorFactory.fromResource(R.drawable.pink_red));
 
 		mGoogleMaps.addMarker(options);
 	}
