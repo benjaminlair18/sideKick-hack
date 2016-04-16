@@ -2,6 +2,7 @@ package com.sidekicker.sidekick;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
@@ -29,6 +30,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by root on 4/16/16.
@@ -43,7 +45,7 @@ public class FragmentMaps
 		           GoogleMap.OnMapLongClickListener,
 		           GoogleMap.OnMapClickListener
 {
-	private GoogleMap mGoogleMaps = null;
+	public static GoogleMap mGoogleMaps = null;
 	private MapView mMapView;
 	private Marker mSydney;
 	private UiSettings mUiSettings;
@@ -54,7 +56,7 @@ public class FragmentMaps
 
 
 	class PopupAdapter implements GoogleMap.InfoWindowAdapter {
-		LayoutInflater inflater=null;
+		LayoutInflater inflater = null;
 
 		PopupAdapter(LayoutInflater inflater) {
 			this.inflater=inflater;
@@ -78,9 +80,6 @@ public class FragmentMaps
 			return(popup);
 		}
 	}
-
-
-
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -162,9 +161,7 @@ public class FragmentMaps
 				double longitude = myLocation.getLongitude();
 				LatLng latLng = new LatLng(latitude, longitude);
 				mGoogleMaps.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-				mGoogleMaps.animateCamera(CameraUpdateFactory.zoomTo(20));
-
-
+				FragmentMaps.mGoogleMaps.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
 			}
 		} catch (SecurityException e) {
 			enableMyLocation();

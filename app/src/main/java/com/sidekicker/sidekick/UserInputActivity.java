@@ -29,7 +29,6 @@ public class UserInputActivity extends Fragment
         else
         {
 
-
         }
 
         return v;
