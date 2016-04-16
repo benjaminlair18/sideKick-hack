@@ -22,6 +22,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.OnStreetViewPanoramaReadyCallback;
+import com.google.android.gms.maps.StreetViewPanorama;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -268,6 +270,18 @@ public class FragmentMaps
 		MainMapsActivity.inputMarker = mGoogleMaps.addMarker(options);
 
 		Marker info = MainMapsActivity.inputMarker;
+
+				MainMapsActivity.inputLatlng = latLng;
+
+						UserInputActivity.mStreetViewPanoramaView.getStreetViewPanoramaAsync(new OnStreetViewPanoramaReadyCallback() {
+								@Override
+								public void onStreetViewPanoramaReady(StreetViewPanorama panorama) {
+										panorama.setPosition(MainMapsActivity.inputLatlng);
+										UserInputActivity.mPanorama = panorama;
+									}
+
+
+									});
 
 
 		TextView tv = UserInputActivity.viewtext;
