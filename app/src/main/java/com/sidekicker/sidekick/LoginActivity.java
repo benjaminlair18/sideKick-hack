@@ -97,6 +97,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 "Auth Token: "
                                 + loginResult.getAccessToken().getToken()
                 );
+                Intent I=new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(I);
 
             }
 
