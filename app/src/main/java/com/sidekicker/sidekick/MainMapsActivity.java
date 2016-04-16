@@ -6,40 +6,38 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
-import com.google.android.gms.maps.OnStreetViewPanoramaReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
 public class MainMapsActivity
-		extends FragmentActivity
+		extends AppCompatActivity
 {
 	AppSectionsPagerAdapter mAdapter;
 	ViewPager mPager;
 	int Number = 0;
 
-
 	static public Marker inputMarker;
-
-	static public LatLng inputLatlng = new LatLng(-33.87365, 151.20689);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_maps_activity);
+		setSupportActionBar((Toolbar)findViewById(R.id.my_login_toolbar));
 
 		mAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
 
 		mPager = (ViewPager)findViewById(R.id.maps_pager);
 		mPager.setAdapter(mAdapter);
-
-
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 //		getMenuInflater().inflate(R.menu.menu_tutorial, menu);
 		return false;
