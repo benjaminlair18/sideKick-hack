@@ -17,67 +17,385 @@
         android:layout_alignParentStart="true">
 
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_above="@+id/imageView"
+            android:layout_centerHorizontal="true">
 
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="200dp"
-                android:src= "@drawable/brightvsdark"
-                android:id="@+id/imageView" />
-
-            <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/switch1"
-
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="43dp" />
-
-            <RadioGroup
-                android:checkedButton="@+id/offer"
-                android:id="@+id/toggle"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="match_parent">
 
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-
-                android:background="@drawable/pink_out_line"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:layout_marginTop="1dp"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:id="@+id/search"
-                    android:background="@drawable/toggle_widget_background"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Search"
-                    android:textColor= "#ffffff" />
+                    android:layout_above="@+id/imageView"
+                    android:layout_alignEnd="@+id/scrollView">
 
-                <RadioButton
-                    android:layout_marginRight="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginBottom="1dp"
-                    android:id="@+id/offer"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/toggle_widget_background"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Offers"
-                    android:textColor="#ffffff" />
-            </RadioGroup>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-        </RelativeLayout>
+                        <RadioGroup
+                            android:checkedButton="@+id/bright"
+                            android:id="@+id/toggle"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
+
+                            android:background="@drawable/pink_out_line"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:layout_marginTop="1dp"
+                                android:layout_marginBottom="1dp"
+                                android:layout_marginLeft="1dp"
+                                android:id="@+id/dark"
+                                android:background="@drawable/toggle_widget_background"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:button="@null"
+                                android:gravity="center"
+                                android:text="Dark"
+                                android:textColor= "#ffffff" />
+
+                            <RadioButton
+                                android:layout_marginRight="1dp"
+                                android:layout_marginTop="1dp"
+                                android:layout_marginBottom="1dp"
+                                android:id="@+id/bright"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/toggle_widget_background"
+                                android:button="@null"
+                                android:gravity="center"
+                                android:text="Bright"
+                                android:textColor="#ffffff" />
+                        </RadioGroup>
+
+
+
+
+
+
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <RadioGroup
+                    android:checkedButton="@+id/clean"
+                    android:id="@+id/toggle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+
+                    android:background="@drawable/pink_out_line"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:id="@+id/dirty"
+                        android:background="@drawable/toggle_widget_background"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="Dirty"
+                        android:textColor= "#ffffff" />
+
+                    <RadioButton
+                        android:layout_marginRight="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:id="@+id/clean"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/toggle_widget_background"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="Clean"
+                        android:textColor="#ffffff" />
+                </RadioGroup>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <RadioGroup
+                        android:checkedButton="@+id/radioButton2"
+                        android:id="@+id/radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:background="@drawable/pink_out_line"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="1dp"
+                            android:id="@+id/radioButton"
+                            android:background="@drawable/toggle_widget_background"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Populated"
+                            android:textColor="#ffffff" />
+
+                        <RadioButton
+                            android:layout_marginRight="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:id="@+id/radioButton2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/toggle_widget_background"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Uninhibited"
+                            android:textColor="#ffffff" />
+                    </RadioGroup>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <RadioGroup
+                        android:checkedButton="@+id/radioButton4"
+                        android:id="@+id/radioGroup2"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:background="@drawable/pink_out_line"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="1dp"
+                            android:id="@+id/radioButton3"
+                            android:background="@drawable/toggle_widget_background"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Stray animals"
+                            android:textColor="#ffffff" />
+
+                        <RadioButton
+                            android:layout_marginRight="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:id="@+id/radioButton4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/toggle_widget_background"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="No stray animals"
+                            android:textColor="#ffffff" />
+                    </RadioGroup>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <RadioGroup
+                        android:checkedButton="@+id/radioButton6"
+                        android:id="@+id/radioGroup3"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:background="@drawable/pink_out_line"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="1dp"
+                            android:id="@+id/radioButton5"
+                            android:background="@drawable/toggle_widget_background"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Alcohol"
+                            android:textColor="#ffffff" />
+
+                        <RadioButton
+                            android:layout_marginRight="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:id="@+id/radioButton6"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/toggle_widget_background"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="No alcohol"
+                            android:textColor="#ffffff" />
+                    </RadioGroup>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <RadioGroup
+                        android:checkedButton="@+id/radioButton8"
+                        android:id="@+id/radioGroup4"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:background="@drawable/pink_out_line"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="1dp"
+                            android:id="@+id/radioButton7"
+                            android:background="@drawable/toggle_widget_background"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Drugs"
+                            android:textColor="#ffffff" />
+
+                        <RadioButton
+                            android:layout_marginRight="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:id="@+id/radioButton8"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/toggle_widget_background"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="No drugs"
+                            android:textColor="#ffffff" />
+                    </RadioGroup>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <RadioGroup
+                        android:checkedButton="@+id/radioButton10"
+                        android:id="@+id/radioGroup5"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:background="@drawable/pink_out_line"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="1dp"
+                            android:id="@+id/radioButton9"
+                            android:background="@drawable/toggle_widget_background"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Prostitution"
+                            android:textColor="#ffffff" />
+
+                        <RadioButton
+                            android:layout_marginRight="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:id="@+id/radioButton10"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/toggle_widget_background"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="No prostitution"
+                            android:textColor="#ffffff" />
+                    </RadioGroup>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
 
