@@ -6,6 +6,7 @@
 .DS_Store
 /build
 /captures
+<<<<<<< HEAD
 *.name
 .idea/.name
 .idea/.name
@@ -17,3 +18,15 @@ app/src/main/java/com/sidekicker/sidekick/MainActivity.java
 .idea/misc.xml
 .idea/modules.xml
 build.gradle
+=======
+
+.idea/.name
+
+.idea/.name
+
+.idea/misc.xml
+
+.idea/modules.xml
+
+.idea/vcs.xml
+>>>>>>> origin/master
