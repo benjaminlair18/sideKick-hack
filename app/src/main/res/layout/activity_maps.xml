@@ -5,19 +5,28 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton"
+            android:background="@mipmap/ic_navigation"/>
+
         <EditText
-            android:layout_width="287dp"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:id="@+id/TFaddress"
-            android:layout_marginLeft="15dp"/>
+            android:layout_alignRight="@+id/imageButton"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Search"
             android:id="@+id/Bsearch"
-            android:layout_gravity="right"
-            android:onClick="onSearch" />
+            android:layout_alignRight="@+id/TFaddress"
+            android:onClick="onSearch"
+            android:textSize="10dp" />
 
     </LinearLayout>
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
