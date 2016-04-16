@@ -8,12 +8,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
+import com.google.android.gms.maps.model.Marker;
+
 public class MainMapsActivity
 		extends FragmentActivity
 {
 	AppSectionsPagerAdapter mAdapter;
 	ViewPager mPager;
 	int Number = 0;
+
+
+	static public Marker inputMarker;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -76,6 +81,7 @@ public class MainMapsActivity
 
 			switch (i)
 			{
+
 			case 0:
 				newFragment = new FragmentMaps();
 				break;
