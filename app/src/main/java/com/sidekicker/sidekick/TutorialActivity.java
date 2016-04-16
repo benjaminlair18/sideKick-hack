@@ -3,9 +3,16 @@ package com.sidekicker.sidekick;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.sidekicker.sidekick.R;
 
 public class TutorialActivity extends FragmentActivity {
@@ -37,13 +44,11 @@ public class TutorialActivity extends FragmentActivity {
         return true;
     }
 
-
-<<<<<<< HEAD
-=======
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class PlaceholderFragment extends Fragment
+    {
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -79,7 +84,8 @@ public class TutorialActivity extends FragmentActivity {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentPagerAdapter
+    {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -111,5 +117,4 @@ public class TutorialActivity extends FragmentActivity {
             return null;
         }
     }
->>>>>>> origin/master
 }
