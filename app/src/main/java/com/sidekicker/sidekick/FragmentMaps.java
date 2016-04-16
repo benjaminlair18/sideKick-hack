@@ -122,6 +122,7 @@ public class FragmentMaps
 	{
 		mGoogleMaps = googleMap;
 		//		Add a marker in Sydney and move the camera
+
 		initListeners();
 		enableMyLocation();
 
@@ -264,7 +265,14 @@ public class FragmentMaps
 		options.title(getAddressFromLatLng(latLng));
 		options.icon(BitmapDescriptorFactory.fromResource(R.drawable.pink_red));
 
-		mGoogleMaps.addMarker(options);
+		MainMapsActivity.inputMarker = mGoogleMaps.addMarker(options);
+
+		Marker info = MainMapsActivity.inputMarker;
+
+
+		TextView tv = UserInputActivity.viewtext;
+		tv.setText(info.getTitle());
+
 	}
 
 	private String getAddressFromLatLng(LatLng latLng) {
