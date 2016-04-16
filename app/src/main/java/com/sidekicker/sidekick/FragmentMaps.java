@@ -2,7 +2,12 @@ package com.sidekicker.sidekick;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,9 +21,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
 
 /**
  * Created by root on 4/16/16.
@@ -29,14 +38,18 @@ public class FragmentMaps
 		           OnMapReadyCallback,
 		           GoogleMap.OnMyLocationButtonClickListener,
 		           MapView.OnClickListener,
-		           ActivityCompat.OnRequestPermissionsResultCallback
+		           ActivityCompat.OnRequestPermissionsResultCallback,
+		           GoogleMap.OnMapLongClickListener,
+		           GoogleMap.OnMapClickListener
 {
-	private GoogleMap mGoogleMaps;
+	private GoogleMap mGoogleMaps = null;
 	private MapView mMapView;
 	private Marker mSydney;
+	private UiSettings mUiSettings;
 	private Marker mLastSelectedMarker;
 	private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
 	private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+	private boolean mPermissionDenied = false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -57,7 +70,20 @@ public class FragmentMaps
 
 		mMapView.onCreate(savedInstanceState);
 
+		initListeners();
+
 		return view;
+	}
+
+	private void initListeners()
+	{
+		if (mGoogleMaps != null)
+		{
+			mGoogleMaps.setOnMarkerClickListener(this);
+			mGoogleMaps.setOnMyLocationButtonClickListener(this);
+			mGoogleMaps.setOnMapLongClickListener(this);
+			mGoogleMaps.setOnMapClickListener(this);
+		}
 	}
 
 	@Override
@@ -69,10 +95,12 @@ public class FragmentMaps
 		                                         .title("Marker in Sydney")
 		                                         .snippet("Population: 4,627,300"));
 		mGoogleMaps.moveCamera(CameraUpdateFactory.newLatLng(SYDNEY));
-		mGoogleMaps.setOnMarkerClickListener(this);
 
-		mGoogleMaps.setOnMyLocationButtonClickListener(this);
+		initListeners();
 		enableMyLocation();
+
+		mUiSettings = mGoogleMaps.getUiSettings();
+		mUiSettings.setZoomControlsEnabled(true);
 	}
 
 	private void enableMyLocation()
@@ -88,20 +116,40 @@ public class FragmentMaps
 				return;
 			}
 			mGoogleMaps.setMyLocationEnabled(true);
+			SetUpMap();
+		}
+	}
+
+	private void SetUpMap()
+	{
+		try
+		{
+			LocationManager locationManager = (LocationManager)getActivity().getSystemService(getActivity().LOCATION_SERVICE);
+			Criteria criteria = new Criteria();
+			String provider = locationManager.getBestProvider(criteria, true);
+			Location myLocation = locationManager.getLastKnownLocation(provider);
+			mGoogleMaps.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+			if (myLocation != null)
+			{
+				double latitude = myLocation.getLatitude();
+				double longitude = myLocation.getLongitude();
+				LatLng latLng = new LatLng(latitude, longitude);
+				mGoogleMaps.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+				mGoogleMaps.animateCamera(CameraUpdateFactory.zoomTo(20));
+				mGoogleMaps.addMarker(new MarkerOptions().position(latLng)
+				                                  .title("You are here!")
+				              );
+			}
+		} catch (SecurityException e) {
+			enableMyLocation();
 		}
 	}
 
 	@Override
-	public boolean onMarkerClick(Marker marker)
+	public boolean onMarkerClick(final Marker marker)
 	{
-		if (marker.equals(mSydney))
-		{}
-		//
-		mLastSelectedMarker = marker;
-		//        // We return false to indicate that we have not consumed the event and that we wish
-		//        // for the default behavior to occur (which is for the camera to move such that the
-		//        // marker is centered and for the marker's info window to open, if it has one).
-		return false;
+		marker.showInfoWindow();
+		return true;
 	}
 
 	@Override
@@ -112,6 +160,27 @@ public class FragmentMaps
 		//        // Return false so that we don't consume the event and the default behavior still occurs
 		//        // (the camera animates to the user's current position).
 		return false;
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+	                                       @NonNull int[] grantResults) {
+		if (requestCode != MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+			return;
+		}
+
+		if (grantResults.length > 0
+				    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+			// permission was granted, yay! Do the
+			// contacts-related task you need to do.
+			enableMyLocation();
+		} else {
+			mPermissionDenied = true;
+			// permission denied, boo! Disable the
+			// functionality that depends on this permission.
+		}
+		return;
 	}
 	
 	@Override
@@ -156,4 +225,30 @@ public class FragmentMaps
 		super.onLowMemory();
 	}
 
+	@Override
+	public void onMapClick(LatLng latLng)
+	{}
+
+	@Override
+	public void onMapLongClick(LatLng latLng)
+	{
+		MarkerOptions options = new MarkerOptions().position(latLng);
+		options.title(getAddressFromLatLng(latLng));
+		options.icon(BitmapDescriptorFactory.defaultMarker());
+
+		mGoogleMaps.addMarker(options);
+	}
+
+	private String getAddressFromLatLng(LatLng latLng) {
+		Geocoder geocoder = new Geocoder(this.getActivity());
+
+		String address = "";
+		try {
+			address = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+					          .get(0).getAddressLine(0);
+		} catch (IOException e) {
+		}
+
+		return address;
+	}
 }

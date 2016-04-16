@@ -16,7 +16,8 @@ public class MainMapsActivity
 	int Number = 0;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_maps_activity);
 
