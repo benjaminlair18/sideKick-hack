@@ -22,7 +22,7 @@
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -72,19 +72,29 @@
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/fb_login_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/info"
-                android:textSize="18sp"
-                />
-
         </LinearLayout>
     </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/fb_login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/fb_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/info"
+            android:textSize="18sp"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/fb_login_button"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
 </LinearLayout>
