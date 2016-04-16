@@ -9,6 +9,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sidekicker.sidekick.UserInputActivity">
 
+
+    <com.google.android.gms.maps.StreetViewPanoramaView
+        android:id="@+id/steet_view_panorama"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -108,6 +115,16 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"></LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <RelativeLayout
@@ -162,6 +179,11 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
                 <RelativeLayout
@@ -208,6 +230,11 @@
                     </RadioGroup>
                 </RelativeLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -262,6 +289,11 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
                 <RelativeLayout
@@ -308,6 +340,11 @@
                     </RadioGroup>
                 </RelativeLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -362,6 +399,11 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
                 <RelativeLayout
@@ -408,6 +450,11 @@
                     </RadioGroup>
                 </RelativeLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"></LinearLayout>
 
         </LinearLayout>
     </ScrollView>

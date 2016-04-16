@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
+import com.google.android.gms.maps.OnStreetViewPanoramaReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
 public class MainMapsActivity
@@ -20,6 +22,8 @@ public class MainMapsActivity
 
 	static public Marker inputMarker;
 
+	static public LatLng inputLatlng = new LatLng(-33.87365, 151.20689);
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -30,6 +34,8 @@ public class MainMapsActivity
 
 		mPager = (ViewPager)findViewById(R.id.maps_pager);
 		mPager.setAdapter(mAdapter);
+
+
 	}
 
 	@Override

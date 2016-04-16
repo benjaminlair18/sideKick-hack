@@ -22,6 +22,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.OnStreetViewPanoramaReadyCallback;
+import com.google.android.gms.maps.StreetViewPanorama;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -51,6 +53,8 @@ public class FragmentMaps
 	private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
 	private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 	private boolean mPermissionDenied = false;
+
+	public LatLng inputLatlng =  new LatLng(-33.87365, 151.20689);
 
 
 	class PopupAdapter implements GoogleMap.InfoWindowAdapter {
@@ -268,6 +272,20 @@ public class FragmentMaps
 		MainMapsActivity.inputMarker = mGoogleMaps.addMarker(options);
 
 		Marker info = MainMapsActivity.inputMarker;
+
+		MainMapsActivity.inputLatlng = latLng;
+
+		UserInputActivity.mStreetViewPanoramaView.getStreetViewPanoramaAsync(new OnStreetViewPanoramaReadyCallback() {
+			@Override
+			public void onStreetViewPanoramaReady(StreetViewPanorama panorama) {
+				panorama.setPosition(MainMapsActivity.inputLatlng);
+				UserInputActivity.mPanorama = panorama;
+			}
+
+
+		});
+
+
 
 
 		TextView tv = UserInputActivity.viewtext;
