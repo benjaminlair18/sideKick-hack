@@ -16,6 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Know the safeset possible path, whenever, wherever."
         android:id="@+id/textViewTut1"
@@ -37,3 +38,8 @@
         android:layout_alignEnd="@+id/textViewTut1" />
 
 </RelativeLayout>
+=======
+        android:text="New Button1"
+        android:id="@+id/button" />
+</LinearLayout>
+>>>>>>> origin/master

@@ -9,6 +9,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sidekicker.sidekick.UserInputActivity">
 
+    <com.google.android.gms.maps.StreetViewPanoramaView
+           android:id="@+id/steet_view_panorama"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -23,6 +28,19 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/imageView"
             android:layout_centerHorizontal="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/textid"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -395,6 +413,7 @@
                     </RadioGroup>
                 </RelativeLayout>
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

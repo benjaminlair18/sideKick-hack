@@ -19,6 +19,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -44,7 +45,10 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity
+        extends AppCompatActivity
+        implements LoaderCallbacks<Cursor>
+{
 
 
     /**
@@ -83,6 +87,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         //set up the facebook login
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
+        setSupportActionBar((Toolbar)findViewById(R.id.my_login_toolbar));
         callbackManager = CallbackManager.Factory.create();
 
         loginButton = (com.facebook.login.widget.LoginButton)findViewById(R.id.fb_login_button);

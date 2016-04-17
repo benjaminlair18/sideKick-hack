@@ -6,6 +6,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:id="@+id/imageView4"
         android:layout_marginTop="35dp"
         android:src="@drawable/pinksos260"
@@ -34,3 +35,8 @@
         android:layout_alignStart="@+id/imageView4"
         android:layout_alignEnd="@+id/imageView4" />
 </RelativeLayout>
+=======
+        android:text="New Button3"
+        android:id="@+id/button2" />
+</LinearLayout>
+>>>>>>> origin/master
