@@ -33,6 +33,7 @@ public class MainMapsActivity
 	AppSectionsPagerAdapter mAdapter;
 	ViewPager mPager;
 	int Number = 0;
+	final int duration = 500;
 
 	static public Marker inputMarker;
 	private ImageView mSearchImg;
@@ -96,11 +97,15 @@ public class MainMapsActivity
 			mTextBox.setText("");
 			mTextBox.setVisibility(View.GONE);
 			mSearchButton.setVisibility(View.GONE);
+			mTextBox.animate().alpha(0.0f).scaleX(0.0f).setDuration(duration);
+			mSearchButton.animate().alpha(0.0f).scaleX(0.0f).setDuration(duration);
 		}
 		else
 		{
 			mTextBox.setVisibility(View.VISIBLE);
 			mSearchButton.setVisibility(View.VISIBLE);
+			mTextBox.animate().alpha(1.0f).scaleX(1.0f).setDuration(duration);
+			mSearchButton.animate().alpha(1.0f).scaleX(1.0f).setDuration(duration);
 		}
 	}
 
@@ -112,6 +117,8 @@ public class MainMapsActivity
 		case R.id.search_icon:
 			mTextBox.setVisibility(View.VISIBLE);
 			mSearchButton.setVisibility(View.VISIBLE);
+			mTextBox.animate().alpha(1.0f).scaleX(1.0f).setDuration(duration);
+			mSearchButton.animate().alpha(1.0f).scaleX(1.0f).setDuration(duration);
 			break;
 
 		case R.id.search__button:
@@ -119,6 +126,8 @@ public class MainMapsActivity
 			{
 				mTextBox.setVisibility(View.GONE);
 				mSearchButton.setVisibility(View.GONE);
+				mTextBox.animate().alpha(0.0f).scaleX(0.0f).setDuration(duration);
+				mSearchButton.animate().alpha(0.0f).scaleX(0.0f).setDuration(duration);
 				mTextBox.setText("");
 				Toast.makeText(this, "Here we go!", Toast.LENGTH_SHORT).show();
 			}
@@ -126,6 +135,8 @@ public class MainMapsActivity
 			{
 				mTextBox.setVisibility(View.GONE);
 				mSearchButton.setVisibility(View.GONE);
+				mTextBox.animate().alpha(0.0f).scaleX(0.0f).setDuration(duration);
+				mSearchButton.animate().alpha(0.0f).scaleX(0.0f).setDuration(duration);
 
 				mTextBox.setText("");
 				Toast.makeText(this, "Wrong address", Toast.LENGTH_SHORT)
