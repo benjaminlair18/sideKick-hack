@@ -39,7 +39,9 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:id="@+id/textid"
-                    android:layout_gravity="center_horizontal" />
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#140000"
+                    android:textSize="25dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -60,7 +62,7 @@
 
                         <RadioGroup
                             android:checkedButton="@+id/bright"
-                            android:id="@+id/toggle"
+                            android:id="@+id/rg1"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
 
@@ -113,6 +115,11 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <RelativeLayout
@@ -121,7 +128,7 @@
 
                 <RadioGroup
                     android:checkedButton="@+id/clean"
-                    android:id="@+id/toggle2"
+                    android:id="@+id/rg2"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
 
@@ -167,6 +174,11 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
                 <RelativeLayout
@@ -175,7 +187,7 @@
 
                     <RadioGroup
                         android:checkedButton="@+id/radioButton2"
-                        android:id="@+id/radioGroup"
+                        android:id="@+id/rg3"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_marginLeft="50dp"
@@ -217,6 +229,11 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
                 <RelativeLayout
@@ -225,7 +242,7 @@
 
                     <RadioGroup
                         android:checkedButton="@+id/radioButton4"
-                        android:id="@+id/radioGroup2"
+                        android:id="@+id/rg4"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_marginLeft="50dp"
@@ -267,6 +284,11 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
                 <RelativeLayout
@@ -275,7 +297,7 @@
 
                     <RadioGroup
                         android:checkedButton="@+id/radioButton6"
-                        android:id="@+id/radioGroup3"
+                        android:id="@+id/rg5"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_marginLeft="50dp"
@@ -317,6 +339,11 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
                 <RelativeLayout
@@ -325,7 +352,7 @@
 
                     <RadioGroup
                         android:checkedButton="@+id/radioButton8"
-                        android:id="@+id/radioGroup4"
+                        android:id="@+id/rg6"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_marginLeft="50dp"
@@ -367,6 +394,11 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="20dp"></LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
                 <RelativeLayout
@@ -375,7 +407,7 @@
 
                     <RadioGroup
                         android:checkedButton="@+id/radioButton10"
-                        android:id="@+id/radioGroup5"
+                        android:id="@+id/rg7"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_marginLeft="50dp"
@@ -413,6 +445,23 @@
                     </RadioGroup>
                 </RelativeLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:id="@+id/submit"
+                android:layout_gravity="center_horizontal"
+                android:background="#ffaaaa"
+                android:textColor="#ffffff"
+                android:clickable="true"
+                android:onClick="on99"
+                />
 
         </LinearLayout>
     </ScrollView>
