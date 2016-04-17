@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
 
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Know the safeset possible path, whenever, wherever."
+        android:text="Know the safest possible path, whenever, wherever."
         android:id="@+id/textViewTut1"
         android:layout_marginTop="35dp"
         android:layout_below="@+id/imageView2"
