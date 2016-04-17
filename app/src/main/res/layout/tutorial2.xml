@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Sidekick is smart, and only getting smarter."
+        android:text="Sidekick is smart, your input makes it smarter."
         android:id="@+id/textView2"
         android:layout_below="@+id/imageView3"
         android:layout_marginTop="35dp"
@@ -28,17 +28,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Information provided by users helps make Sidekick smarter. Taking factors like street lighting and population density into account, Sidekick priotorizes information that can be used to keep you safe."
+        android:text="Taking factors like street lighting and population density into account, Sidekick priotorizes information that can be used to keep you safe."
         android:id="@+id/textView3"
         android:layout_below="@+id/textView2"
         android:layout_alignStart="@+id/textView2"
         android:layout_marginTop="15dp"
         android:layout_alignEnd="@+id/textView2" />
 </RelativeLayout>
-=======
-        android:text="New Button2"
-        android:id="@+id/button2" />
-</LinearLayout>
->>>>>>> origin/master
