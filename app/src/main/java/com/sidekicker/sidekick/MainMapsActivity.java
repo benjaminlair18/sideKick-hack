@@ -1,33 +1,53 @@
 package com.sidekicker.sidekick;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
 
 public class MainMapsActivity
 		extends AppCompatActivity
+		implements View.OnFocusChangeListener,
+		View.OnClickListener
 {
 	AppSectionsPagerAdapter mAdapter;
 	ViewPager mPager;
 	int Number = 0;
+	final int duration = 500;
+
+
+
+	static public LatLng inputLatlng = new LatLng(-33.87365, 151.20689);
+
 
 	static public Marker inputMarker;
+	private ImageView mSearchImg;
+	private EditText mTextBox;
+	private ImageButton mSearchButton;
 
-
-		static public LatLng inputLatlng = new LatLng(-33.87365, 151.20689);
+	private int semephore = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -40,6 +60,15 @@ public class MainMapsActivity
 
 		mPager = (ViewPager)findViewById(R.id.maps_pager);
 		mPager.setAdapter(mAdapter);
+
+		mSearchImg = (ImageView)findViewById(R.id.search_icon);
+		mSearchImg.setOnFocusChangeListener(this);
+		mSearchImg.setOnClickListener(this);
+		mTextBox = (EditText)findViewById(R.id.search_textbox);
+		mTextBox.setOnFocusChangeListener(this);
+		mSearchButton = (ImageButton)findViewById(R.id.search__button);
+		mSearchButton.setOnFocusChangeListener(this);
+		mSearchButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -50,29 +79,80 @@ public class MainMapsActivity
 		return false;
 	}
 
-	public void on99(View view)
+	@Override
+	public void onFocusChange(View v, boolean hasFocus)
 	{
+		switch (v.getId())
+		{
+			case R.id.search__button:
+				semephore += (hasFocus)? 1 : -1;
+				break;
 
-		RadioGroup rg1 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg1);
-		RadioGroup rg2 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg2);
-		RadioGroup rg3 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg3);
-		RadioGroup rg4 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg4);
-		RadioGroup rg5 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg5);
-		RadioGroup rg6 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg6);
-		RadioGroup rg7 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg7);
+			case R.id.search_textbox:
+				semephore += (hasFocus)? 1 : -1;
+				break;
 
-		String radiovalue1 = ((RadioButton)UserInputActivity.inputV.findViewById(rg1.getCheckedRadioButtonId())).getText().toString();
-		String radiovalue2 = ((RadioButton)UserInputActivity.inputV.findViewById(rg2.getCheckedRadioButtonId())).getText().toString();
-		String radiovalue3 = ((RadioButton)UserInputActivity.inputV.findViewById(rg3.getCheckedRadioButtonId())).getText().toString();
-		String radiovalue4 = ((RadioButton)UserInputActivity.inputV.findViewById(rg4.getCheckedRadioButtonId())).getText().toString();
-		String radiovalue5 = ((RadioButton)UserInputActivity.inputV.findViewById(rg5.getCheckedRadioButtonId())).getText().toString();
-		String radiovalue6 = ((RadioButton)UserInputActivity.inputV.findViewById(rg6.getCheckedRadioButtonId())).getText().toString();
-		String radiovalue7 = ((RadioButton)UserInputActivity.inputV.findViewById(rg7.getCheckedRadioButtonId())).getText().toString();
+			case R.id.search_icon:
+				semephore += (hasFocus)? 1 : -1;
+				break;
+		}
+		if (semephore < 0)
+			semephore = 0;
 
-
-
-
+		if (semephore == 0)
+		{
+			mTextBox.setText("");
+			mTextBox.setVisibility(View.GONE);
+			mSearchButton.setVisibility(View.GONE);
+			mTextBox.animate().alpha(0.0f).scaleX(0.0f).setDuration(duration);
+			mSearchButton.animate().alpha(0.0f).scaleX(0.0f).setDuration(duration);
+		}
+		else
+		{
+			mTextBox.setVisibility(View.VISIBLE);
+			mSearchButton.setVisibility(View.VISIBLE);
+			mTextBox.animate().alpha(1.0f).scaleX(1.0f).setDuration(duration);
+			mSearchButton.animate().alpha(1.0f).scaleX(1.0f).setDuration(duration);
+		}
 	}
+
+	@Override
+	public void onClick(View v)
+	{
+		switch (v.getId())
+		{
+			case R.id.search_icon:
+				mTextBox.setVisibility(View.VISIBLE);
+				mSearchButton.setVisibility(View.VISIBLE);
+				mTextBox.animate().alpha(1.0f).scaleX(1.0f).setDuration(duration);
+				mSearchButton.animate().alpha(1.0f).scaleX(1.0f).setDuration(duration);
+				break;
+
+			case R.id.search__button:
+				if (!TextUtils.isEmpty(mTextBox.getText().toString()) && onSearch(mTextBox.getText().toString()))
+				{
+					mTextBox.setVisibility(View.GONE);
+					mSearchButton.setVisibility(View.GONE);
+					mTextBox.animate().alpha(0.0f).scaleX(0.0f).setDuration(duration);
+					mSearchButton.animate().alpha(0.0f).scaleX(0.0f).setDuration(duration);
+					mTextBox.setText("");
+					Toast.makeText(this, "Here we go!", Toast.LENGTH_SHORT).show();
+				}
+				else
+				{
+					mTextBox.setVisibility(View.GONE);
+					mSearchButton.setVisibility(View.GONE);
+					mTextBox.animate().alpha(0.0f).scaleX(0.0f).setDuration(duration);
+					mSearchButton.animate().alpha(0.0f).scaleX(0.0f).setDuration(duration);
+
+					mTextBox.setText("");
+					Toast.makeText(this, "Wrong address", Toast.LENGTH_SHORT)
+							.show();
+				}
+				break;
+		}
+	}
+
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the primary
 	 * sections of the app.
@@ -80,32 +160,15 @@ public class MainMapsActivity
 	public
 	class AppSectionsPagerAdapter
 			extends FragmentPagerAdapter
-			implements ViewPager.OnPageChangeListener, FragmentManager.OnBackStackChangedListener
 	{
 
 		private final String[] sectionName = { "Maps", "Tutorial" };
+		private int curPosition = -1;
 
 		public AppSectionsPagerAdapter(FragmentManager fm)
 		{
 			super(fm);
 		}
-
-		@Override
-		public
-		void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-		{}
-
-		@Override
-		public
-		void onPageSelected(int position) {}
-
-		@Override
-		public
-		void onPageScrollStateChanged(int state) {}
-
-		@Override
-		public
-		void onBackStackChanged() {}
 
 		@Override
 		public
@@ -116,16 +179,16 @@ public class MainMapsActivity
 			switch (i)
 			{
 
-			case 0:
-				newFragment = new FragmentMaps();
-				break;
+				case 0:
+					newFragment = new FragmentMaps();
+					break;
 
-			case 1:
-				newFragment = new UserInputActivity();
-				break;
+				case 1:
+					newFragment = new UserInputActivity();
+					break;
 
-			default:
-				return null;
+				default:
+					return null;
 			}
 
 			return newFragment;
@@ -145,6 +208,52 @@ public class MainMapsActivity
 		{
 			return sectionName[position];
 		}
+
+	}
+
+	public boolean onSearch(String placeName)
+	{
+		String location = placeName;
+		List<Address> addressList = null;
+		if (location != null || !location.equals(""))
+		{
+			Geocoder geocoder = new Geocoder(this);
+			try
+			{
+				addressList = geocoder.getFromLocationName(location, 1);
+			} catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+
+			Address address = addressList.get(0);
+			LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+			FragmentMaps.mGoogleMaps.addMarker(new MarkerOptions().position(latLng).title("Marker"));
+			FragmentMaps.mGoogleMaps.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+			return true;
+		}
+		return false;
+	}
+
+
+	public void on99(View view)
+	{
+
+		RadioGroup rg1 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg1);
+		RadioGroup rg2 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg2);
+		RadioGroup rg3 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg3);
+		RadioGroup rg4 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg4);
+		RadioGroup rg5 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg5);
+		RadioGroup rg6 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg6);
+		RadioGroup rg7 = (RadioGroup) UserInputActivity.inputV.findViewById(R.id.rg7);
+
+		String radiovalue1 = ((RadioButton)UserInputActivity.inputV.findViewById(rg1.getCheckedRadioButtonId())).getText().toString();
+		String radiovalue2 = ((RadioButton)UserInputActivity.inputV.findViewById(rg2.getCheckedRadioButtonId())).getText().toString();
+		String radiovalue3 = ((RadioButton)UserInputActivity.inputV.findViewById(rg3.getCheckedRadioButtonId())).getText().toString();
+		String radiovalue4 = ((RadioButton)UserInputActivity.inputV.findViewById(rg4.getCheckedRadioButtonId())).getText().toString();
+		String radiovalue5 = ((RadioButton)UserInputActivity.inputV.findViewById(rg5.getCheckedRadioButtonId())).getText().toString();
+		String radiovalue6 = ((RadioButton)UserInputActivity.inputV.findViewById(rg6.getCheckedRadioButtonId())).getText().toString();
+		String radiovalue7 = ((RadioButton)UserInputActivity.inputV.findViewById(rg7.getCheckedRadioButtonId())).getText().toString();
 
 	}
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/main_maps"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:id="@+id/main_maps"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_main_toolbar"
@@ -21,10 +21,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/search_button"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_weight="1"
+                android:id="@+id/search_icon"
+                android:layout_gravity="right|center_vertical"
+                android:gravity="right|center_vertical"
                 android:src="@mipmap/ic_search_black_24dp"
                 android:background="#00000000" />
 
@@ -34,53 +33,56 @@
                 android:layout_gravity="left|center_vertical"
                 android:gravity="left|center_vertical"
                 android:layout_weight="99"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:animateLayoutChanges="true"
                 android:id="@+id/search_textbox"
-                android:visibility="visible"/>
+                android:visibility="gone"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/enter_button"
+                android:id="@+id/search__button"
                 android:src="@mipmap/ic_send_black_24dp"
                 android:background="#00000000"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-
-                android:gravity="center"
-                android:visibility="visible" />
+                android:layout_gravity="center|center_vertical"
+                android:animateLayoutChanges="true"
+                android:layout_marginRight="15dp"
+                android:gravity="center|center_vertical"
+                android:visibility="gone" />
 
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
 
     <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:paddingTop="@dimen/activity_horizontal_margin"-->
-        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
-        <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
-        <!--android:paddingBottom="@dimen/activity_vertical_margin" >-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:paddingTop="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingBottom="@dimen/activity_vertical_margin" >-->
 
-        <!--<ImageButton-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/imageButton"-->
-            <!--android:background="@mipmap/ic_navigation"/>-->
+    <!--<ImageButton-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/imageButton"-->
+    <!--android:background="@mipmap/ic_navigation"/>-->
 
-        <!--<EditText-->
-            <!--android:layout_width="270dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/TFaddress"-->
-            <!--android:layout_alignRight="@+id/imageButton"/>-->
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Search"-->
-            <!--android:id="@+id/Bsearch"-->
-            <!--android:layout_alignRight="@+id/TFaddress"-->
-            <!--android:onClick="onSearch"-->
-            <!--android:textSize="10dp" />-->
+    <!--<EditText-->
+    <!--android:layout_width="270dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/TFaddress"-->
+    <!--android:layout_alignRight="@+id/imageButton"/>-->
+    <!--<Button-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Search"-->
+    <!--android:id="@+id/Bsearch"-->
+    <!--android:layout_alignRight="@+id/TFaddress"-->
+    <!--android:onClick="onSearch"-->
+    <!--android:textSize="10dp" />-->
 
     <!--</LinearLayout>-->
 

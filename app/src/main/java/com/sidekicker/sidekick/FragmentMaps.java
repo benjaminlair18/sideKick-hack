@@ -45,7 +45,7 @@ public class FragmentMaps
 		           GoogleMap.OnMapLongClickListener,
 		           GoogleMap.OnMapClickListener
 {
-	private GoogleMap mGoogleMaps = null;
+	static  public GoogleMap mGoogleMaps = null;
 	private MapView mMapView;
 	private Marker mSydney;
 	private UiSettings mUiSettings;
