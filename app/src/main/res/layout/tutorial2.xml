@@ -1,11 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:src="@drawable/pinkbrain"
+        android:layout_marginTop="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Sidekick is smart, and only getting smarter."
+        android:id="@+id/textView2"
+        android:layout_below="@+id/imageView3"
+        android:layout_marginTop="35dp"
+        style="@android:style/TextAppearance.Large"
+        android:layout_alignStart="@+id/imageView3"
+        android:layout_alignEnd="@+id/imageView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+<<<<<<< HEAD
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Information provided by users helps make Sidekick smarter. Taking factors like street lighting and population density into account, Sidekick priotorizes information that can be used to keep you safe."
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginTop="15dp"
+        android:layout_alignEnd="@+id/textView2" />
+</RelativeLayout>
+=======
         android:text="New Button2"
         android:id="@+id/button2" />
 </LinearLayout>
+>>>>>>> origin/master

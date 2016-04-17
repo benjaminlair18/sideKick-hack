@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+        android:id="@+id/imageView4"
+        android:layout_marginTop="35dp"
+        android:src="@drawable/pinksos260"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Get help fast."
+        android:id="@+id/textView4"
+        android:layout_below="@+id/imageView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        style="@android:style/TextAppearance.Large"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="No matter how prepared you are, completely avoiding dangerous situations isn't possible. Get in touch with an emergency contact at the tap of a button."
+        android:id="@+id/textView5"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="15dp"
+        android:layout_alignStart="@+id/imageView4"
+        android:layout_alignEnd="@+id/imageView4" />
+</RelativeLayout>
+=======
         android:text="New Button3"
         android:id="@+id/button2" />
 </LinearLayout>
+>>>>>>> origin/master

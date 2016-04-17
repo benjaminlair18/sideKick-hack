@@ -49,10 +49,10 @@ public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAd
         String title = "";
         switch(position){
             case 0:
-                title = "Report";
+                title = "Safe";
                 break;
             case 1:
-                title = "Warn";
+                title = "Smart";
                 break;
             case 2:
                 title = "S.O.S.";
